@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b14">
+  <title>Calculadora Infinita</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/decimal.js@10.6.0/decimal.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon">🖥</span><div><h1>INFINITE<span>CALC</span></h1><p>Calculadora científica de alta precisão</p></div></div>
+      <div class="precision"><span class="live-dot"></span> PRECISÃO <strong id="precisionLabel">100 dígitos</strong></div>
+    </header>
+
+    <section class="workspace">
+      <section class="calculator panel">
+        <div class="section-head"><span>ÁREA DE CÁLCULO</span><span class="status">● SISTEMA ATIVO</span></div>
+        <div class="display">
+          <label for="expression">EXPRESSÃO</label>
+          <textarea id="expression" rows="2" spellcheck="false" placeholder="Ex.: (2^100) *  factorial(50)"></textarea>
+          <div class="result-label">RESULTADO</div>
+          <div id="result" class="result" aria-live="polite">0</div>
+          <div id="resultMeta" class="result-meta">Aguardando cálculo</div>
+        </div>
+
+        <div class="keypad" id="keypad">
+          <button class="key utility" data-action="clear">AC</button>
+          <button class="key utility" data-action="backspace">⌫</button>
+          <button class="key utility" data-insert="(">(</button>
+          <button class="key utility" data-insert=")">)</button>
+          <button class="key operator" data-insert="/">÷</button>
+
+          <button class="key" data-insert="7">7</button><button class="key" data-insert="8">8</button><button class="key" data-insert="9">9</button>
+          <button class="key operator" data-insert="*">×</button><button class="key function" data-insert="^">xʸ</button>
+
+          <button class="key" data-insert="4">4</button><button class="key" data-insert="5">5</button><button class="key" data-insert="6">6</button>
+          <button class="key operator" data-insert="-">−</button><button class="key function" data-insert="!">n!</button>
+
+          <button class="key" data-insert="1">1</button><button class="key" data-insert="2">2</button><button class="key" data-insert="3">3</button>
+          <button class="key operator" data-insert="+">+</button><button class="key function" data-insert="%">%</button>
+
+          <button class="key function" data-insert="pi">π</button><button class="key" data-insert="0">0</button><button class="key" data-insert=".">.</button>
+          <button class="key function" data-insert="sqrt(">√</button><button class="key equals" data-action="calculate">=</button>
+        </div>
+
+        <div class="function-row">
+          <button class="chip" data-insert="sin(">sin</button>
+          <button class="chip" data-insert="cos(">cos</button>
+          <button class="chip" data-insert="tan(">tan</button>
+          <button class="chip" data-insert="ln(">ln</button>
+          <button class="chip" data-insert="log(">log</button>
+          <button class="chip" data-insert="abs(">abs</button>
+          <button class="chip" data-insert="cbrt(">∛</button>
+          <button class="chip" data-insert="e">e</button>
+        </div>
+
+        <div class="controls">
+          <label>Precisão (dígitos)
+            <select id="precision">
+              <option>50</option><option selected>100</option><option>250</option><option>500</option><option>1000</option>
+            </select>
+          </label>
+          <label>Formato
+            <select id="format">
+              <option value="auto" selected>Automático</option>
+              <option value="normal">Decimal</option>
+              <option value="scientific">Científico</option>
+            </select>
+          </label>
+          <button id="copyResult" class="outline-btn">Copiar resultado</button>
+        </div>
+        <p class="hint">Dica: também pode digitar diretamente. Use <code>^</code> para potência, <code>!</code> para fatorial e funções como <code>sqrt(81)</code>.</p>
+      </section>
+
+      <aside class="side">
+        <section class="panel history-panel">
+          <div class="section-head"><span>HISTÓRICO DA SESSÃO</span><button id="clearHistory" class="text-btn">Limpar</button></div>
+          <div id="history" class="history-empty">Seus cálculos aparecerão aqui enquanto esta página estiver aberta.</div>
+        </section>
+        <section class="panel info-panel">
+          <div class="section-head"><span>RECURSOS</span></div>
+          <div class="feature"><b>∞</b><div><strong>Precisão configurável</strong><small>Até 1.000 dígitos significativos nesta interface.</small></div></div>
+          <div class="feature"><b>∑</b><div><strong>Expressões encadeadas</strong><small>Parênteses, potências e funções matemáticas.</small></div></div>
+          <div class="feature"><b>⚡︎</b><div><strong>Inteiros gigantes</strong><small>Fatoriais calculados com inteiros exatos, dentro dos limites do dispositivo.</small></div></div>
+          <div class="warning"><strong>Limite real:</strong> cálculos gigantes consomem memória e processamento. Precisão não significa capacidade física infinita.</div>
+        </section>
+      </aside>
+    </section>
+    <footer> <span>•</span> Processamento local no navegador <span>•</span> Sem banco de dados</footer>
+  </main>
+</body>
+</html>
